@@ -5,12 +5,14 @@ import { sliderItems } from '../data'
 import styled from 'styled-components';
 import { deleteData_products } from '../redux/cardRedux';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Slider() {
 
     const [slideIndex, setSlideIndex] = useState(0)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
 
     const handleClick = (direction) => {
@@ -36,10 +38,10 @@ export default function Slider() {
     `;
 
 
-    const vacciarPrdouct = () => {
-        console.log("productso eliminados .......")
-        dispatch(deleteData_products());
-
+    const goProducts = () => {
+        // console.log("productso eliminados .......")
+        // dispatch(deleteData_products());
+        navigate('/products')
     }
 
     return (
@@ -58,7 +60,7 @@ export default function Slider() {
                         <div className="infContainer">
                             <h1 className="title">{item.title}</h1>
                             <p className="description">{item.desc}</p>
-                            <button className='btn' onClick={vacciarPrdouct}>show now</button>
+                            <button className='btn' onClick={goProducts}>Start Now</button>
                         </div>
                     </Slide>
                 )}
