@@ -45,8 +45,24 @@ input {
     border: none;
 }
 
+.link-logo{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.link-logo:hover{
+    color: rgb(111, 111, 111);
+}
+
 .logo {
+    color: black;
     font-weight: bold;
+}
+
+.logo:hover {
+    color: rgb(111, 111, 111);
+
 }
 
 .menuItem {
@@ -55,28 +71,146 @@ input {
     cursor: pointer;
 }
 
+/* this is new  */
+.menu-trigger .icon-ui {
+    /* background-color: rgb(245, 242, 242); */
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    /* border: 1px solid #ccc; */
+    border: 0.5px solid lightgray;
+    cursor: pointer;
+}
+
+.dropdwon-nemu {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    border-radius: 5px;
+    width: 180px;
+    padding: 10px 20px;
+    z-index: 100;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    font-size: 14px;
+}
+
+/* .dropdwon-nemu::before{
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    transform: rotate(45deg);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+} */
+
+.dropdwon-nemu.active{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: 0.4s ease;
+}
+
+.dropdwon-nemu.inactive{
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: 0.4s ease;
+}
+
+.menu-title{
+    padding: 10px 0;
+}
+
+h3{
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.2px;
+}
+
+h5{
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2px;
+    color: rgb(180, 177, 177);
+
+}
+
+
+.dropdwon-nemu ul{
+    padding: 0%;
+    /* background-color: yellow; */
+}
+.dropdwon-nemu ul li{
+    padding: 10px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+}
+
+.dropdwon-nemu ul li:hover a{
+    cursor: pointer;
+    color: rgb(180, 177, 177);
+}
+
+/* .dropdwon-nemu ul li a{
+    padding: 5px;
+    background-color: antiquewhite;
+
+} */
+
+.dropdawonItem{
+    display: flex;
+    margin: 10px auto;
+}
+
+.items{
+    width: 60%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdawonItem img{
+    max-width: 20px;
+    margin-right: 10px;
+    opacity: 0.5;
+}
+
 @media only screen and (max-width: 380px) {
-    .contenedor{
+    .contenedor {
         height: "50px"
     }
 
-    .wrapper{
+    .wrapper {
         padding: "10px 0px"
     }
 
-    .Language-Navbar{
-        display: "none" 
+    .Language-Navbar {
+        display: "none"
     }
 
-    .input{
+    .input {
         width: "50px"
     }
 
-    .logo{
+    .logo {
         font-size: "24px";
     }
 
-    .right{
+    .right {
         flex: 2;
         justify-content: center;
     }

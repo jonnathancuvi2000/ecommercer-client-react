@@ -3,6 +3,8 @@ import { popularProducts } from '../data';
 import '../style/Products.css';
 import Product from './Product';
 import axios from 'axios';
+import Spinner from './Spinner';
+import { publicRequest } from '../requestMethods';
 
 export default function Products({ cat, filters, sort }) {
   const [products, setProducts] = useState([]);
@@ -11,9 +13,9 @@ export default function Products({ cat, filters, sort }) {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get(cat
-          ? `http://localhost:5000/api/products?category=${cat}`
-          : `http://localhost:5000/api/products`);
+        const res = await publicRequest.get(cat
+          ? `/products?category=${cat}`
+          : `/products`);
         setProducts(res.data); // we save all the products taht we take from BACKEND
       } catch (error) {
         console.log(error)
@@ -53,9 +55,9 @@ export default function Products({ cat, filters, sort }) {
         ? filteredProducts.map((item) =>
           <Product item={item} key={item.id} />
         )
-        : products.slice(0, 8).map((item) =>
+        : products.length > 0 ? (products.slice(0, 8).map((item) =>
           <Product item={item} key={item.id} />
-        )}
+        )) : <Spinner/>}
     </div>
   )
 }

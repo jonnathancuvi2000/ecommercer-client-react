@@ -26,6 +26,8 @@ export default function Product({ item }) {
         transform: scale(1.1);
       }
   `
+
+  console.log(item)
   return (
     <Container className='container-product'>
       <div className="circle"></div>
@@ -43,6 +45,14 @@ export default function Product({ item }) {
           <FavoriteBorderOutlined />
         </Icon>
       </Info>
+      <div className="containerInfo">
+        <div className="nameProduct">
+          <span>{item.title}</span>
+        </div>
+        <div className="priceProduct">
+          <span>$ {item.price}</span>
+        </div>
+      </div>
     </Container>
   )
 }

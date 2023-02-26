@@ -8,6 +8,34 @@
     justify-content: center;
     background-color: #f5fbfd;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.containerInfo{
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* background-color: white; */
+    border-radius: 10px;
+    margin-top: 5px;
+    border-radius: 10px;
+}
+
+.containerInfo .nameProduct{
+    font-size: 16px;
+    font-weight: 500;
+    color: #525252;
+    margin-bottom: 5px;
+}
+
+.containerInfo .priceProduct{
+    font-size: 15px;
+    font-weight: 500;
+    color: #a1a1a1;
 }
 
 .circle {
@@ -37,6 +65,7 @@
     justify-content: center;
     transition: all 0.5s ease;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 .icon {

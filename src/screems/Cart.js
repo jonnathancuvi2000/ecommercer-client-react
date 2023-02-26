@@ -3,12 +3,13 @@ import '../Style_Screem/Cart.css';
 import Navbar from '../components/Navbar';
 import Anoucenment from '../components/Anoucenment';
 import Footer from '../components/Footer';
-import { Add, Remove } from "@material-ui/icons";
+import { Add, Remove, Delete } from "@material-ui/icons";
 import styled from "styled-components";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';
 import { userRequest } from '../requestMethods';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { updateProduct, removeProduct } from '../redux/cardRedux'
 
 
 // const KEY = process.env.REACT_APP_STRIPE;
@@ -35,9 +36,13 @@ export default function Cart() {
 
 
 
-    const cart = useSelector(state => state.cart);
+    let cart = useSelector(state => state.cart);
+    localStorage.setItem('productos', JSON.stringify(cart.products));
+
+
     const [stripeToken, setStripeToken] = useState(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const onToken = (token) => {
         setStripeToken(token);
@@ -50,7 +55,7 @@ export default function Cart() {
                 const res = await userRequest.post('/checkout/payment',
                     {
                         tokenId: stripeToken.id,
-                        amount: cart.totalPrice, // 25
+                        amount: cart.totalPrice * 100, // this has to be the same "amount" tha it is in the button below
                     }
                 );
                 console.log(res.data);
@@ -61,6 +66,61 @@ export default function Cart() {
         }
         stripeToken && makeRequest(); // it just going to run thsi function if "stripeToken" exist 
     }, [stripeToken, cart.totalPrice, navigate])
+
+
+    // solo actualice y empeso aa funcionar esto ------------   
+    const handelClickDecrease = (product, cantidad) => {
+        // no puedes cambiar los datos que extraes directamente de redux, almacene en localstorace para cambiarlos
+        if (cantidad > 0) {
+            console.log(product);
+            const priceProduct = product.price;
+            const type = "decres";
+            console.log(cantidad);
+            console.log("DECRE");
+            let productos = localStorage.getItem('productos')
+            // console.log(typeof(JSON.parse(productos)))
+            let datos = JSON.parse(productos);
+            console.log(datos);
+            datos.map((item) => {
+                if (item._id === product._id) {
+                    item.quantity = cantidad;
+                }
+                return '';
+            })
+            console.log(datos);
+            dispatch(updateProduct({ datos, priceProduct, type }))
+        }
+
+    }
+
+    const handelClickIncrease = (product, cantidad) => {
+        console.log(product);
+        const priceProduct = product.price;
+        console.log(cantidad);
+        const type = "incres";
+
+        console.log("INCRE");
+        let productos = localStorage.getItem('productos')
+        // console.log(typeof(JSON.parse(productos)))
+        let datos = JSON.parse(productos);
+        console.log(datos);
+        datos.map((item) => {
+            if (item._id === product._id) {
+                item.quantity = cantidad;
+            }
+            return '';
+        })
+        console.log(datos);
+        dispatch(updateProduct({ datos, priceProduct, type }))
+
+    }
+
+    const handelClickRemoveProduct = (product, precio, cantidad) => {
+        dispatch(removeProduct({ product, precio, cantidad }))
+    }
+
+    console.log(cart)
+
     return (
         <div className='Container-Cart'>
             <Navbar></Navbar>
@@ -99,11 +159,20 @@ export default function Cart() {
 
                                 <div className="PriceDetail-Cart">
                                     <div className="ProductAmountContainer-Cart">
-                                        <Add />
+                                        <div className="icon" onClick={() => handelClickDecrease(product, product.quantity - 1)} >
+                                            <Remove />
+                                        </div>
                                         <div className="ProductAmount-Cart">{product.quantity}</div>
-                                        <Remove />
+                                        <div className="icon" onClick={() => handelClickIncrease(product, product.quantity + 1)}>
+                                            <Add />
+                                        </div>
                                     </div>
-                                    <div className="ProductPrice-Cart">$ {product.price * product.quantity}</div>
+                                    <div className="ProductPrice-Remove">
+                                        <div className="ProductPrice-Cart">$ {product.price * product.quantity}</div>
+                                        <div className="remove-icon" onClick={() => handelClickRemoveProduct(product, product.price, product.quantity)}>
+                                            <Delete />
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -121,7 +190,7 @@ export default function Cart() {
                             <span className="SummaryItemPrice">$ {cart.totalPrice}</span>
                         </SummaryItem >
 
-                        <SummaryItem className="SummaryItem-Cart">
+                        {/* <SummaryItem className="SummaryItem-Cart">
                             <span className="SummaryItemText-Cart">Estimated Shipping</span>
                             <span className="SummaryItemPrice">$ 5.90</span>
                         </SummaryItem >
@@ -129,7 +198,7 @@ export default function Cart() {
                         <SummaryItem className="SummaryItem-Cart">
                             <span className="SummaryItemText-Cart">Shipping Discount</span>
                             <span className="SummaryItemPrice">$ -5.90</span>
-                        </SummaryItem >
+                        </SummaryItem > */}
 
                         <SummaryItem className="SummaryItem-Cart">
                             <span className="SummaryItemText-Cart">Total</span>
@@ -137,7 +206,7 @@ export default function Cart() {
                         </SummaryItem >
 
 
-                        <StripeCheckout
+                        {/* <StripeCheckout
                             name="Ecommerce App"
                             image='https://play-lh.googleusercontent.com/58RktDMZt1DTMWICx_3X7AiedtZcYhzhK_jAqnLF-9TYzSLMthcR9oaRMB6ZjsZm2A'
                             shippingAddress
@@ -148,7 +217,10 @@ export default function Cart() {
                             stripeKey={KEY}
                         >
                             <button className="Button-Cart">CHECKOUT NOW</button>
-                        </StripeCheckout>
+                        </StripeCheckout> */}
+                        <Link to={'/order'}>
+                            <button className="btn-compra">Realizar Compra</button>
+                        </Link>
                     </div>
 
                 </div>

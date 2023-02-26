@@ -1,0 +1,54 @@
+.Wrapper-Order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    font-weight: 300;
+}
+.Steepers .label-stepper {
+    position: relative;
+    top: 30px;
+    left: -43px;
+}
+
+.MuiStepConnector-root {
+ 
+    width: 100px;
+    position: relative;
+    /* left: -20px; */
+}
+
+.step {
+    width: 20px;
+    /* background-color: red; */
+}
+
+.shippingAddress{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.MuiTextField-root input {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 14px;
+    width: 400px;
+}
+
+.MuiTextField-root label {
+    top: -4px;
+}
+
+.MuiTextField-root label[data-shrink='true'] {
+    top: 0;
+}
+
+.Wrapper-Payment{
+    /* background-color: red; */
+    margin-bottom: 20px;
+    margin: 0px 10px 100px 0px;
+}

@@ -1,27 +1,32 @@
-.Container-Register {
+.Container-UpdateUser {
     width: 100vw;
-    height: 100vh;
-    background: linear-gradient(rgba(255, 255, 255, 0.5),
-            rgba(255, 255, 255, 0.5)),
-        url("https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") center;
-    background-size: cover;
+    height: 89.5vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #f5fafd;
 }
 
-.Wrapper-Register {
+.Wrapper-UpdateUser {
     width: 40%;
     padding: 20px;
     background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
-.Title-Register {
+.UpdateUser-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Title-UpdateUser {
     font-size: 24px;
     font-weight: 300;
 }
 
-.Form-Register {
+.Form-UpdateUser {
     display: flex;
     flex-wrap: wrap;
 }
@@ -33,20 +38,28 @@
     padding: 10px;
     border: 1px solid #ccc;
 }
-.Password-Register{
+
+.Password-UpdateUser {
     margin-top: 20px;
     color: red;
 }
 
-.Agreement-Register {
+.Agreement-UpdateUser {
     font-size: 12px;
     margin: 20px 0px;
 }
 
-.Button-Register {
+.btns{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Button-UpdateUser {
+    margin-top: 20px;
     width: 40%;
     border: none;
-    padding: 15px 20px;
+    padding: 10px 20px;
     background-color: teal;
     color: white;
     cursor: pointer;

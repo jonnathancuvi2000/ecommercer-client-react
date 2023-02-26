@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import cartReducer from './cardRedux';
 import userReducer from "./userRedux";
+import orderReducer from "./orderRedux";
 import {
     persistStore,
     persistReducer,
@@ -18,12 +19,15 @@ const persistConfig = {
     version: 1,
     storage,
 }
-
+// combineReducers -> https://redux-toolkit.js.org/usage/usage-guide
 const rootReducer = combineReducers({ // with this we combine our reecuder, in order to meke our all  reducer (userReducer and cardReducer) persisten
     user: userReducer,
     cart: cartReducer,
+    orderInfo: orderReducer 
 })
 
+// Redux-Persist (look for this in teh link) -> https://redux-toolkit.js.org/usage/usage-guide
+// Persist, whit "Persist" this when we refresh the page the data in the store of redux is still there 
 const persistedReducer = persistReducer(persistConfig, rootReducer); // in thsi line we write the reducer that we want to persist
 
 // we create our store

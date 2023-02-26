@@ -83,14 +83,37 @@
     margin-bottom: 20px;
 }
 
+.ProductAmountContainer-Cart .icon{
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.ProductAmountContainer-Cart .icon:hover{
+    background-color: #f7f4f4;
+}
+
 .ProductAmount-Cart {
     font-size: 24px;
     margin: 5px;
 }
 
+.ProductPrice-Remove{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .ProductPrice-Cart {
     font-size: 30px;
     font-weight: 200;
+}
+
+.ProductPrice-Remove .remove-icon{
+    margin-left: 50px;
+    color: red;
+    cursor: pointer;
+    /* I add this, because I want tha the item was aline */
+    margin-top: 7px; 
 }
 
 .Hr-Cart {
@@ -104,7 +127,8 @@
     border: 0.5px solid lightgray;
     border-radius: 10px;
     padding: 20px;
-    height: 60vh;/* this was not before */
+    /* this was not before */
+    height: 40vh;
     
 }
 
@@ -124,4 +148,19 @@
     background-color: black;
     color: white;
     font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-compra{
+    border: none;
+    width: 100%;
+    padding: 10px;
+    background-color: teal;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-compra:hover{
+    background-color: rgb(6, 160, 160);
+
 }
